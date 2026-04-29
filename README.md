@@ -151,11 +151,6 @@ Get comprehensive city details including population, location coordinates, Wikip
 Receive unique, AI-generated interesting facts about each city powered by LLM.
 
 ![AI Insights](./screenshots/5.png)
-
-### 6. Theme Support
-
-Toggle between light and dark modes for comfortable viewing in any environment.
-
 ![Theme Toggle](./screenshots/6.png)
 
 ## 📁 Project Structure
