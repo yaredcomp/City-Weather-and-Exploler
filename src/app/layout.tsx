@@ -1,19 +1,28 @@
-import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { DM_Sans, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const poppins = Poppins({
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm-sans",
+  display: "swap",
+});
+
+const cormorant = Cormorant_Garamond({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
-  variable: "--font-poppins",
+  variable: "--font-cormorant",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "City Weather Explorer",
-  description:
-    "Explore weather conditions and interesting facts about cities around the world",
+  description: "Discover the mood and atmosphere of cities around the world through real-time weather insights",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#f8f6f3",
 };
 
 export default function RootLayout({
@@ -24,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${poppins.variable} font-sans antialiased`}
+        className={`${dmSans.variable} ${cormorant.variable} font-sans antialiased`}
       >
         <Providers>{children}</Providers>
       </body>
