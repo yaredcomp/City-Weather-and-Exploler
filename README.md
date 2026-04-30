@@ -133,7 +133,7 @@ The main weather explorer interface with search functionality and clean design.
 
 Search for any city worldwide with intelligent suggestions for misspelled names.
 
-![City Search](./screenshots/1.png)
+![Dark Theme Weather Display ](./screenshots/2.png)
 
 ### 3. Weather Display
 
