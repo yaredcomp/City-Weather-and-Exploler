@@ -1,69 +1,99 @@
-# City Weather Explorer 🌤️
+# Agentic Weather App 🌤️
 
-A modern Single Page Application (SPA) built with Next.js that allows users to explore weather conditions and interesting facts about cities around the world. This agentic weather app leverages AI to provide unique insights about each city.
+A modern Next.js weather explorer that combines live city weather, Wikipedia summaries, AI-powered city insights, and curated imagery in one responsive interface.
 
 ![Weather App Preview](./screenshots/2.png)
 
-## ✨ What This Project Achieves
+## 🖼️ UI & Data Flow
 
-This project demonstrates a fully-featured weather application with the following capabilities:
+This app follows a simple, visual workflow from search to insight.
 
-- **Real-time Weather Data**: Fetches current weather conditions for any city worldwide using the Open-Meteo API
-- **AI-Powered City Insights**: Uses Large Language Models (LLM) to generate interesting facts and historical information about cities
-- **City Imagery**: Retrieves beautiful city photographs from Pexels API
-- **Geocoding**: Converts city names to coordinates using Open-Meteo's geocoding service
-- **Wikipedia Integration**: Fetches city overviews and information from Wikipedia
-- **Modern UI/UX**: Beautiful, responsive interface with smooth animations and theme support
+### 1. City search input
 
-## 🛠️ Tools & Technologies Used
+Enter a city name in the search bar to begin the workflow.
 
-### Core Framework
+![Search screen](./screenshots/1.png)
 
-- **Next.js 15** - React framework with App Router
-- **TypeScript** - Type-safe development
-- **React 19** - UI library
+### 2. Location lookup and city selection
 
-### Styling & UI
+The app resolves the search into a city plus country and coordinates.
 
-- **Tailwind CSS 4** - Utility-first CSS framework
-- **Framer Motion** - Smooth animations and transitions
-- **Lucide React** - Beautiful icon library
-- **Next Themes** - Dark/Light theme management
+![Location lookup](./screenshots/2.png)
 
-### APIs & Services
+### 3. Current weather display
 
-- **Open-Meteo API** - Free weather and geocoding API
-- **Wikipedia API** - City information and overviews
-- **Pexels API** - High-quality city images
-- **LLM Providers** (one of):
-  - **Ollama** - Local LLM (default)
-  - **OpenRouter** - Cloud LLM routing
-  - **Groq** - Fast inference API
+Live weather conditions are shown with temperature, humidity, wind, and condition.
 
-### Development Tools
+![Weather display](./screenshots/3.png)
 
-- **ESLint** - Code linting
-- **PostCSS** - CSS processing
-- **TypeScript** - Type checking
+### 4. City overview with Wikipedia summary
 
-## 🚀 How to Run the Project
+A summarized city profile appears with context and an external reference.
+
+![City overview](./screenshots/4.png)
+
+### 5. AI-generated insights
+
+LLM-powered sections highlight culture, history, and travel guidance.
+
+![AI insights](./screenshots/5.png)
+
+### 6. Theme toggle and polished UI
+
+The responsive layout supports dark/light themes and smooth presentation.
+
+![Theme toggle](./screenshots/6.png)
+
+### 7. City imagery carousel
+
+Relevant photos are displayed from Pexels or smart fallback imagery.
+
+![City imagery](./screenshots/7.png)
+
+## ✨ What This Project Includes
+
+- **City search** for weather and location details
+- **Open-Meteo geocoding** to resolve city names to coordinates
+- **Open-Meteo current weather** for temperature, humidity, wind, and condition
+- **Wikipedia overview** for each city
+- **AI city insights** generated via Ollama, OpenRouter, or Groq
+- **Pexels image search** with fallback placeholder images when API credentials are missing
+- **Responsive UI** with theme toggle support and animated transitions
+
+## 🛠️ Technologies Used
+
+- **Next.js 15** with App Router
+- **React 19** + **TypeScript**
+- **Tailwind CSS 4**
+- **Next Themes** for dark/light mode
+- **Lucide React** icons
+- **Framer Motion** for subtle reveal animations
+
+## 🌐 APIs & Integration
+
+- **Open-Meteo** for geocoding and weather data
+- **Wikipedia** for city overviews
+- **Pexels** for city image search
+- **Ollama / OpenRouter / Groq** for AI-generated city insights
+
+## 🚀 Run Locally
 
 ### Prerequisites
 
-1. **Node.js** 18.17 or later
-2. **npm** or **yarn** package manager
-3. **Ollama** (optional - for local LLM, or use OpenRouter/Groq)
+- Node.js 18.17 or later
+- npm or yarn
+- Ollama (optional if using the local LLM provider)
 
-### Installation Steps
+### Setup
 
-1. **Clone the repository:**
+1. Clone the repository:
 
    ```bash
    git clone <repository-url>
-   cd city-weather-explorer
+   cd agentic-weather-app
    ```
 
-2. **Install dependencies:**
+2. Install dependencies:
 
    ```bash
    npm install
@@ -71,45 +101,36 @@ This project demonstrates a fully-featured weather application with the followin
    yarn install
    ```
 
-3. **Configure environment variables:**
-
-   Create a `.env.local` file in the root directory:
+3. Create a `.env.local` file in the project root with the following values:
 
    ```env
-   # API Configuration
-   NEXT_PUBLIC_API_URL=http://localhost:3000/api
-
-   # LLM Configuration (choose one)
-   # Option 1: Ollama (local) - default
+   # LLM provider (one of ollama, openrouter, groq)
    LLM_PROVIDER=ollama
+
+   # Ollama local LLM settings
    OLLAMA_MODEL=llama3.2
    OLLAMA_URL=http://localhost:11434
 
-   # Option 2: OpenRouter (cloud)
-   # LLM_PROVIDER=openrouter
+   # OpenRouter settings
    # OPENROUTER_API_KEY=your-api-key
    # OPENROUTER_MODEL=anthropic/claude-3-haiku
 
-   # Option 3: Groq (fast cloud)
-   # LLM_PROVIDER=groq
+   # Groq settings
    # GROQ_API_KEY=your-api-key
    # GROQ_MODEL=llama-3.1-70b-versatile
 
-   # Pexels API (optional - for city images)
+   # Optional Pexels API key for better city photos
    # PEXELS_API_KEY=your-pexels-api-key
    ```
 
-4. **Start Ollama (if using local LLM):**
+4. If you use the local Ollama provider, start Ollama:
 
    ```bash
-   # Pull the model if needed
    ollama pull llama3.2
-
-   # Start Ollama server
    ollama serve
    ```
 
-5. **Start the development server:**
+5. Run the app:
 
    ```bash
    npm run dev
@@ -117,88 +138,56 @@ This project demonstrates a fully-featured weather application with the followin
    yarn dev
    ```
 
-6. **Open the application:**
-   Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
-
-## 📸 Application Screenshots
-
-### 1. Main Interface
-
-The main weather explorer interface with search functionality and clean design.
-
-![Main Interface](./screenshots/1.png)
-
-### 2. City Photo
-
-Search for any city worldwide with intelligent suggestions for misspelled names.
-
-![City Photo](./screenshots/7.png)
-
-### 3. Weather Display
-
-View current weather conditions including temperature, humidity, wind speed, and weather condition with animated icons.
-
-![Weather Display](./screenshots/3.png)
-
-### 4. City Information
-
-Get comprehensive city details including population, location coordinates, Wikipedia overview, and beautiful city photographs.
-
-![City Information](./screenshots/4.png)
-
-### 5. AI-Generated Insights
-
-Receive unique, AI-generated interesting facts about each city powered by LLM.
-
-![AI Insights](./screenshots/5.png)
-![Theme Toggle](./screenshots/6.png)
+6. Open [http://localhost:3000](http://localhost:3000)
 
 ## 📁 Project Structure
 
-```
+```text
 src/
 ├── app/
 │   ├── api/
 │   │   └── weather/
-│   │       └── route.ts       # Weather API endpoint
-│   ├── globals.css            # Global styles
-│   ├── layout.tsx             # Root layout
-│   ├── page.tsx               # Main page component
-│   └── providers.tsx          # Theme providers
+│   │       └── route.ts       # API handler for city weather workflow
+│   ├── globals.css            # Global CSS
+│   ├── layout.tsx             # App shell and metadata
+│   ├── page.tsx               # Main weather search UI
+│   └── providers.tsx          # Theme provider setup
 ├── lib/
-│   ├── llm.ts                 # LLM integration
-│   └── pexels.ts              # Pexels API client
+│   ├── llm.ts                 # Local/cross-provider LLM integration
+│   └── pexels.ts              # Pexels image search and fallback logic
 ```
 
 ## 🔧 API Endpoint
 
-### Weather Information
-
 - **Endpoint**: `/api/weather`
-- **Method**: POST
-- **Request Body**:
+- **Method**: `POST`
+- **Body**:
   ```json
-  {
-    "location": "city-name"
-  }
+  { "location": "city-name" }
   ```
-- **Response**: Weather data, city overview, Wikipedia info, fun facts, and city images
+- **Returns**: city info, current weather, Wikipedia summary, AI insights, and city images
+
+## 📄 Scripts
+
+- `npm run dev` — start development server
+- `npm run build` — production build
+- `npm run start` — start production server
+- `npm run lint` — run Next.js lint checks
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1. Fork the repo
+2. Create a branch: `git checkout -b feature/my-feature`
+3. Commit your changes
+4. Push and open a pull request
 
 ## 📄 License
 
-MIT License - feel free to use this project for learning or commercial purposes.
+MIT License
 
 ## 🙏 Acknowledgments
 
-- [Open-Meteo](https://open-meteo.com/) for free weather and geocoding APIs
-- [Wikipedia](https://www.wikipedia.org/) for city information
-- [Pexels](https://www.pexels.com/) for beautiful free images
+- [Open-Meteo](https://open-meteo.com/)
+- [Wikipedia](https://www.wikipedia.org/)
+- [Pexels](https://www.pexels.com/)
 - [Ollama](https://ollama.ai/) for local AI inference
