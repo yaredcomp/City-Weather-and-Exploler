@@ -2,7 +2,6 @@
 
 A modern Single Page Application (SPA) built with Next.js that allows users to explore weather conditions and interesting facts about cities around the world. This agentic weather app leverages AI to provide unique insights about each city.
 
-
 ![Weather App Preview](./screenshots/2.png)
 
 ## ✨ What This Project Achieves
@@ -133,7 +132,7 @@ The main weather explorer interface with search functionality and clean design.
 
 Search for any city worldwide with intelligent suggestions for misspelled names.
 
-![City Search](./screenshots/2.png)
+![City Photo](./screenshots/7.png)
 
 ### 3. Weather Display
 
