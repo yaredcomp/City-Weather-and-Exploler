@@ -18,19 +18,19 @@ The app resolves the search into a city plus country and coordinates.
 
 ![Location lookup](./screenshots/2.png)
 
-### 3. Current weather display
+### 2. Current weather display
 
 Live weather conditions are shown with temperature, humidity, wind, and condition.
 
 ![Weather display](./screenshots/3.png)
 
-### 4. City overview with Wikipedia summary
+### 3. City overview with Wikipedia summary
 
 A summarized city profile appears with context and an external reference.
 
 ![City overview](./screenshots/4.png)
 
-### 5. AI-generated insights
+### 4. AI-generated insights
 
 LLM-powered sections highlight culture, history, and travel guidance.
 
@@ -38,7 +38,7 @@ LLM-powered sections highlight culture, history, and travel guidance.
 
 ![AI insights](./screenshots/6.png)
 
-### 6. City imagery carousel
+### 5. City imagery carousel
 
 Relevant photos are displayed from Pexels or smart fallback imagery.
 
