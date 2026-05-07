@@ -128,11 +128,11 @@ The main weather explorer interface with search functionality and clean design.
 
 ![Main Interface](./screenshots/1.png)
 
-### 2. City Search
+### 2. City Photo
 
 Search for any city worldwide with intelligent suggestions for misspelled names.
 
-![City Search](./screenshots/2.png)
+![City Search](./screenshots/7.png)
 
 ### 3. Weather Display
 
