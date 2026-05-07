@@ -6,15 +6,13 @@ A modern Next.js weather explorer that combines live city weather, Wikipedia sum
 
 ## 🖼️ UI & Data Flow
 
-This app follows a simple, visual workflow from search to insight.
+This app follows a simple, visual workflow from search to insight in both dark/light theme.
 
 ### 1. City search input
 
 Enter a city name in the search bar to begin the workflow.
 
 ![Search screen](./screenshots/1.png)
-
-### 2. Location lookup and city selection
 
 The app resolves the search into a city plus country and coordinates.
 
@@ -38,13 +36,9 @@ LLM-powered sections highlight culture, history, and travel guidance.
 
 ![AI insights](./screenshots/5.png)
 
-### 6. Theme toggle and polished UI
+![AI insights](./screenshots/6.png)
 
-The responsive layout supports dark/light themes and smooth presentation.
-
-![Theme toggle](./screenshots/6.png)
-
-### 7. City imagery carousel
+### 6. City imagery carousel
 
 Relevant photos are displayed from Pexels or smart fallback imagery.
 
