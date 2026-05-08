@@ -89,7 +89,7 @@ const weatherIcons: Record<string, React.ElementType> = {
   cloud: Cloud,
 };
 
-function useOnScreen(ref: React.RefObject<HTMLElement>, threshold = 0.1) {
+function useOnScreen(ref: React.RefObject<HTMLElement | null>, threshold = 0.1) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -349,7 +349,7 @@ function InsightsCard({ content }: { content: string }) {
       </div>
 
       <div className="grid gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {sections.map((section, index) => {
+        {sections.map((section) => {
           const lines = section.trim().split("\n");
           const title = lines[0].replace(/^##\s*/, "").replace(/\*\*/g, "");
           const body = lines.slice(1).join("\n").trim().replace(/\*\*/g, "").replace(/\*/g, "").replace(/^[-•]\s*/gm, "");
