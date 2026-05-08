@@ -23,6 +23,7 @@ This guide walks you through setting up the CI/CD pipeline with GitHub Actions a
 6. Click "Deploy"
 
 After deployment completes:
+
 - Note your **Vercel Organization ID** (from account settings)
 - Note your **Vercel Project ID** (from project settings)
 - Create a **Vercel Token** (Settings > Tokens > Create)
@@ -30,26 +31,27 @@ After deployment completes:
 ## Step 2: Configure GitHub Secrets
 
 Go to your GitHub repository:
+
 1. **Settings** > **Secrets and Variables** > **Actions**
 2. Add the following secrets:
 
 ### Required Secrets
 
-| Secret Name | Value | Source |
-|---|---|---|
-| `VERCEL_TOKEN` | Your Vercel authentication token | Vercel Dashboard > Settings > Tokens |
-| `VERCEL_ORG_ID` | Your Vercel Organization ID | Vercel Dashboard > Settings > General |
-| `VERCEL_PROJECT_ID` | Your Vercel Project ID | Vercel Project > Settings > General |
+| Secret Name         | Value                            | Source                                |
+| ------------------- | -------------------------------- | ------------------------------------- |
+| `VERCEL_TOKEN`      | Your Vercel authentication token | Vercel Dashboard > Settings > Tokens  |
+| `VERCEL_ORG_ID`     | Your Vercel Organization ID      | Vercel Dashboard > Settings > General |
+| `VERCEL_PROJECT_ID` | Your Vercel Project ID           | Vercel Project > Settings > General   |
 
 ### Optional API Secrets
 
-| Secret Name | Value | Notes |
-|---|---|---|
-| `PEXELS_API_KEY` | Your Pexels API key | https://www.pexels.com/api/ - enables real city images |
-| `LLM_PROVIDER` | `ollama`, `openrouter`, or `groq` | Defaults to `ollama` (local) |
-| `OPENROUTER_API_KEY` | Your OpenRouter API key | https://openrouter.ai - required if using OpenRouter |
-| `GROQ_API_KEY` | Your Groq API key | https://console.groq.com - required if using Groq |
-| `NEXT_PUBLIC_API_URL` | Your app URL | e.g., `https://agentic-weather-app.vercel.app` |
+| Secret Name           | Value                             | Notes                                                  |
+| --------------------- | --------------------------------- | ------------------------------------------------------ |
+| `PEXELS_API_KEY`      | Your Pexels API key               | https://www.pexels.com/api/ - enables real city images |
+| `LLM_PROVIDER`        | `ollama`, `openrouter`, or `groq` | Defaults to `ollama` (local)                           |
+| `OPENROUTER_API_KEY`  | Your OpenRouter API key           | https://openrouter.ai - required if using OpenRouter   |
+| `GROQ_API_KEY`        | Your Groq API key                 | https://console.groq.com - required if using Groq      |
+| `NEXT_PUBLIC_API_URL` | Your app URL                      | e.g., `https://agentic-weather-app.vercel.app`         |
 
 ## Step 3: Configure Branch Protection Rules
 
@@ -136,6 +138,7 @@ git push origin staging
 ### On Every Push/PR to develop or main
 
 **CI Pipeline** (`ci.yml`):
+
 1. ✅ Lint (ESLint)
 2. ✅ Test (Jest)
 3. ✅ Build (Next.js)
@@ -143,6 +146,7 @@ git push origin staging
 ### On PR to main or staging
 
 **Preview Deployment** (Vercel automatic):
+
 - Automatically creates preview deployment
 - Comment posted with preview URL
 - Comments with automatic status updates
@@ -150,6 +154,7 @@ git push origin staging
 ### On Merge to staging
 
 **Staging Deployment** (`deploy-staging.yml`):
+
 1. Builds application
 2. Deploys to Vercel (staging project)
 3. Posts deployment comment in PR
@@ -157,6 +162,7 @@ git push origin staging
 ### On Merge to main
 
 **Production Deployment** (`deploy-production.yml`):
+
 1. Builds application
 2. Deploys to Vercel (production project)
 3. Updates deployment status
@@ -164,19 +170,23 @@ git push origin staging
 ## GitOps Configuration Files
 
 ### `.github/config/deployment-config.yml`
+
 Defines branch-to-environment mapping, approval requirements, and deployment strategies. This is the single source of truth for deployment rules.
 
 ### `.github/config/environments/*.env`
+
 Environment-specific configuration (non-sensitive only). Sensitive values are managed through GitHub Secrets and Vercel environment variables.
 
 ## Monitoring & Troubleshooting
 
 ### View Deployment History
+
 1. Go to repository **Deployments** tab
 2. See all production and staging deployments
 3. Click on any deployment to see details and logs
 
 ### View CI Logs
+
 1. Go to **Actions** tab
 2. Click on the workflow run
 3. Click on the failed job to see detailed logs
@@ -184,15 +194,18 @@ Environment-specific configuration (non-sensitive only). Sensitive values are ma
 ### Common Issues
 
 **Deployment fails with "VERCEL_TOKEN invalid"**
+
 - Verify token in GitHub Secrets is correct and not expired
 - Create a new token from Vercel dashboard
 
 **Tests failing in CI but passing locally**
+
 - Ensure node_modules are cached correctly
 - Check for environment-specific issues
 - Try: `npm ci` instead of `npm install` (cleaner install)
 
 **Preview deployment not appearing**
+
 - Ensure `.github/workflows/deploy-preview.yml` exists
 - Vercel integration must be installed in GitHub app
 - Check Vercel project is correctly linked
@@ -214,6 +227,7 @@ Environment-specific configuration (non-sensitive only). Sensitive values are ma
 ## Support
 
 For issues or questions:
+
 - Check GitHub Actions logs: Repository > Actions > [Workflow] > [Run]
 - Check Vercel logs: Project > Deployments > [Deployment]
 - Review this guide's Troubleshooting section

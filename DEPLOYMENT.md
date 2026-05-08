@@ -1,10 +1,11 @@
 # CI/CD Pipeline Quick Start
 
-Your GitHub Actions + Vercel GitOps pipeline is now configured! 
+Your GitHub Actions + Vercel GitOps pipeline is now configured!
 
 ## 🚀 Quick Setup (5 minutes)
 
 ### 1. Add GitHub Secrets
+
 Go to **Settings → Secrets and variables → Actions** and add:
 
 ```
@@ -16,6 +17,7 @@ VERCEL_PROJECT_ID    = <your-vercel-project-id>
 Get these values from Vercel: https://vercel.com/account/tokens
 
 ### 2. Test the Pipeline
+
 ```bash
 # Create a test branch
 git checkout -b test/pipeline
@@ -32,6 +34,7 @@ git add . && git commit -m "test" && git push -u origin test/pipeline
 ```
 
 ### 3. Deploy to Production
+
 ```bash
 # Merge your PR to main
 # GitHub Actions automatically deploys to Vercel production
@@ -76,6 +79,7 @@ CI Runs: Lint → Test → Build
 - **Sensitive vars**: Stored in GitHub Secrets (not in git)
 
 Example:
+
 ```bash
 # In git (safe)
 NEXT_PUBLIC_ENV=production
@@ -88,12 +92,12 @@ PEXELS_API_KEY=...
 
 ## 📊 Deploy to Multiple Environments
 
-| Branch | Environment | Auto Deploy | URL |
-|--------|-------------|-------------|-----|
-| `main` | Production | ✅ | `agentic-weather-app.vercel.app` |
-| `staging` | Staging | ✅ | `agentic-weather-app-staging.vercel.app` |
-| `develop` | Development | ✅ | Local dev |
-| `feature/*` | Preview | ✅ | `agentic-weather-app-[hash].vercel.app` |
+| Branch      | Environment | Auto Deploy | URL                                      |
+| ----------- | ----------- | ----------- | ---------------------------------------- |
+| `main`      | Production  | ✅          | `agentic-weather-app.vercel.app`         |
+| `staging`   | Staging     | ✅          | `agentic-weather-app-staging.vercel.app` |
+| `develop`   | Development | ✅          | Local dev                                |
+| `feature/*` | Preview     | ✅          | `agentic-weather-app-[hash].vercel.app`  |
 
 ## 🔗 Useful Links
 
