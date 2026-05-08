@@ -1,0 +1,60 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm ci",
+  "framework": "nextjs",
+  "public": true,
+  "env": [
+    {
+      "key": "PEXELS_API_KEY",
+      "description": "API key for Pexels image search",
+      "value": "@pexels_api_key"
+    },
+    {
+      "key": "LLM_PROVIDER",
+      "description": "LLM provider (ollama, openrouter, groq)",
+      "value": "@llm_provider"
+    },
+    {
+      "key": "OPENROUTER_API_KEY",
+      "description": "OpenRouter API key",
+      "value": "@openrouter_api_key"
+    },
+    {
+      "key": "GROQ_API_KEY",
+      "description": "Groq API key",
+      "value": "@groq_api_key"
+    },
+    {
+      "key": "OLLAMA_URL",
+      "description": "Ollama server URL",
+      "value": "http://localhost:11434"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ],
+  "regions": ["sfo1"],
+  "git": {
+    "deploymentEnabled": {
+      "main": true,
+      "staging": true
+    }
+  }
+}

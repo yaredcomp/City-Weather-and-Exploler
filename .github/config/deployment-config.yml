@@ -1,0 +1,132 @@
+# GitOps Deployment Configuration
+# This file defines the deployment strategy and rules for the agentic-weather-app
+
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  name: agentic-weather-app
+  namespace: default
+
+spec:
+  # Branch to environment mapping
+  branchMapping:
+    - branch: main
+      environment: production
+      auto-deploy: true
+      require-approval: false
+      approval-count: 2
+      notification: true
+
+    - branch: staging
+      environment: staging
+      auto-deploy: true
+      require-approval: false
+      notification: true
+
+    - branch: develop
+      environment: development
+      auto-deploy: true
+      require-approval: false
+      notification: false
+
+  # Environment configurations
+  environments:
+    development:
+      name: Development
+      url: http://localhost:3000
+      auto-deploy: true
+      status-checks-required:
+        - lint
+        - test
+      deployment-timeout: 10m
+      resource-limits:
+        memory: 512Mi
+        cpu: 250m
+
+    staging:
+      name: Staging
+      url: https://agentic-weather-app-staging.vercel.app
+      auto-deploy: true
+      status-checks-required:
+        - lint
+        - test
+        - build
+      deployment-timeout: 15m
+      resource-limits:
+        memory: 1Gi
+        cpu: 500m
+      deployment-strategy:
+        type: rolling
+        max-surge: 1
+        max-unavailable: 0
+
+    production:
+      name: Production
+      url: https://agentic-weather-app.vercel.app
+      auto-deploy: false
+      require-approval: false
+      status-checks-required:
+        - lint
+        - test
+        - build
+      deployment-timeout: 20m
+      resource-limits:
+        memory: 2Gi
+        cpu: 1000m
+      deployment-strategy:
+        type: canary
+        canary-weight: 10
+        canary-duration: 5m
+      rollback:
+        enabled: true
+        on-failure: true
+        history-limit: 5
+
+  # Notification settings
+  notifications:
+    slack:
+      enabled: false
+      webhook-url: ${{ secrets.SLACK_WEBHOOK }}
+      channels:
+        - deployments
+        - alerts
+
+    github:
+      enabled: true
+      status-checks: true
+      deployment-status: true
+
+  # Security policies
+  security:
+    branch-protection:
+      main:
+        require-code-review: true
+        required-approving-review-count: 1
+        require-status-checks: true
+        require-branches-up-to-date: true
+        dismiss-stale-reviews: false
+
+      staging:
+        require-code-review: false
+        require-status-checks: true
+
+    secrets-management:
+      provider: github-secrets
+      rotation-enabled: false
+      audit-logging: true
+
+  # Rollback configuration
+  rollback:
+    enabled: true
+    on-deployment-failure: true
+    on-health-check-failure: true
+    max-history: 5
+    auto-rollback-delay: 5m
+
+  # Health checks
+  health-checks:
+    enabled: true
+    interval: 30s
+    timeout: 10s
+    path: /
+    expected-status: 200
